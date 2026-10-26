@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Loja Online</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Aviso -->
+    <div class="aviso">
+        Frete grátis acima de R$ 199
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <h1>TechStore</h1>
+
+        <nav>
+            <a href="#">Início</a>
+            <a href="#categorias">Categorias</a>
+            <a href="#produtos">Produtos</a>
+            <a href="#contato">Contato</a>
+        </nav>
+
+        <input id="buscaProdutos" type="search" placeholder="Buscar produtos" aria-label="Buscar produtos">
+        <a href="#produtos" id="abrirCarrinho">🛒 Carrinho (<span id="quantidadeCarrinho">0</span>)</a>
+    </header>
+
+    <main>
+
+        <!-- Banner principal -->
+        <section class="banner">
+            <h2>Ofertas especiais!</h2>
+            <p>Encontre os melhores produtos para você.</p>
+            <a href="#produtos">Ver produtos</a>
+        </section>
+
+        <!-- Categorias -->
+        <section id="categorias">
+            <h2>Categorias</h2>
+
+            <div class="categorias">
+                <div class="categoria">📱<p>Celulares</p></div>
+                <div class="categoria">💻<p>Notebooks</p></div>
+                <div class="categoria">🎧<p>Áudio</p></div>
+                <div class="categoria">⌚<p>Relógios</p></div>
+                <div class="categoria">🖱️<p>Acessórios</p></div>
+                <div class="categoria">🎮<p>Games</p></div>
+            </div>
+        </section>
+
+        <!-- Produtos -->
+        <section id="produtos">
+            <h2>Produtos em destaque</h2>
+
+            <div class="produtos">
+
+                <div class="produto">
+                    <img src="https://placehold.co/300x200"
+                         alt="Smartphone">
+                    <span>Promoção</span>
+                    <h3>Smartphone</h3>
+                    <p class="antigo">R$ 1.499,90</p>
+                    <p class="preco">R$ 1.199,90</p>
+                    <button type="button" class="adicionar-carrinho">Adicionar ao carrinho</button>
+                </div>
+
+                <div class="produto">
+                    <img src="https://placehold.co/300x200"
+                         alt="Notebook">
+                    <span>Promoção</span>
+                    <h3>Notebook</h3>
+                    <p class="antigo">R$ 3.999,90</p>
+                    <p class="preco">R$ 3.499,90</p>
+                    <button type="button" class="adicionar-carrinho">Adicionar ao carrinho</button>
+                </div>
+
+                <div class="produto">
+                    <img src="https://placehold.co/300x200"
+                         alt="Fone de ouvido">
+                    <span>Promoção</span>
+                    <h3>Fone Bluetooth</h3>
+                    <p class="antigo">R$ 299,90</p>
+                    <p class="preco">R$ 199,90</p>
+                    <button type="button" class="adicionar-carrinho">Adicionar ao carrinho</button>
+                </div>
+
+                <div class="produto">
+                    <img src="https://placehold.co/300x200"
+                         alt="Relógio inteligente">
+                    <span>Promoção</span>
+                    <h3>Smartwatch</h3>
+                    <p class="antigo">R$ 499,90</p>
+                    <p class="preco">R$ 349,90</p>
+                    <button type="button" class="adicionar-carrinho">Adicionar ao carrinho</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Banners -->
+        <section class="banners">
+            <div>
+                <h2>Grandes ofertas</h2>
+                <p>Aproveite nossos descontos.</p>
+            </div>
+
+            <div>
+                <h2>Novidades</h2>
+                <p>Confira os novos produtos.</p>
+            </div>
+        </section>
+
+        <!-- Benefícios -->
+        <section class="beneficios">
+            <div>
+                <h3>🚚 Entrega</h3>
+                <p>Receba seus produtos em casa.</p>
+            </div>
+
+            <div>
+                <h3>🔒 Segurança</h3>
+                <p>Mais tranquilidade nas compras.</p>
+            </div>
+
+            <div>
+                <h3>💬 Atendimento</h3>
+                <p>Estamos aqui para ajudar.</p>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="newsletter">
+            <h2>Receba nossas ofertas!</h2>
+            <p>Cadastre seu e-mail para receber novidades.</p>
+
+            <form id="formNewsletter">
+                <input id="emailNewsletter" type="email" placeholder="Seu e-mail" required>
+                <button type="submit">Assinar</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Rodapé -->
+    <footer id="contato">
+        <div>
+            <h3>TechStore</h3>
+            <p>Sua loja de tecnologia.</p>
+        </div>
+
+        <div>
+            <h3>Links úteis</h3>
+            <p>Início</p>
+            <p>Produtos</p>
+        </div>
+
+        <div>
+            <h3>Atendimento</h3>
+            <p>contato@techstore.com</p>
+        </div>
+
+        <div>
+            <h3>Redes sociais</h3>
+            <p>Instagram | Facebook</p>
+        </div>
+
+        <p class="copyright">© 2026 TechStore</p>
+    </footer>
+
+
+    <!-- Janela do carrinho adicionada -->
+    <dialog id="modalCarrinho">
+        <h2>Seu carrinho</h2>
+        <div id="itensCarrinho"></div>
+        <button type="button" id="fecharCarrinho">Fechar</button>
+    </dialog>
+
+    <!-- JavaScript -->
+    <script>
+        const carrinho = [];
+
+        const contadorCarrinho = document.getElementById("quantidadeCarrinho");
+        const modalCarrinho = document.getElementById("modalCarrinho");
+        const itensCarrinho = document.getElementById("itensCarrinho");
+
+        // Adiciona um produto ao carrinho.
+        document.querySelectorAll(".adicionar-carrinho").forEach(function(botao) {
+            botao.addEventListener("click", function() {
+                const produto = botao.closest(".produto");
+                const nome = produto.querySelector("h3").textContent.trim();
+                const precoTexto = produto.querySelector(".preco").textContent;
+                const preco = Number(
+                    precoTexto.replace("R$", "").trim().replace(/\./g, "").replace(",", ".")
+                );
+
+                carrinho.push({ nome: nome, preco: preco });
+                contadorCarrinho.textContent = carrinho.length;
+                alert(nome + " foi adicionado ao carrinho!");
+            });
+        });
+
+        // Abre o carrinho e mostra os itens.
+        document.getElementById("abrirCarrinho").addEventListener("click", function(evento) {
+            evento.preventDefault();
+            itensCarrinho.innerHTML = "";
+
+            if (carrinho.length === 0) {
+                itensCarrinho.textContent = "Seu carrinho está vazio.";
+            } else {
+                let total = 0;
+
+                carrinho.forEach(function(item) {
+                    total += item.preco;
+                    const linha = document.createElement("p");
+                    linha.textContent = item.nome + " — " +
+                        item.preco.toLocaleString("pt-BR", {
+                            style: "currency",
+                            currency: "BRL"
+                        });
+                    itensCarrinho.appendChild(linha);
+                });
+
+                const totalTexto = document.createElement("strong");
+                totalTexto.textContent = "Total: " + total.toLocaleString("pt-BR", {
+                    style: "currency",
+                    currency: "BRL"
+                });
+                itensCarrinho.appendChild(totalTexto);
+            }
+
+            modalCarrinho.showModal();
+        });
+
+        document.getElementById("fecharCarrinho").addEventListener("click", function() {
+            modalCarrinho.close();
+        });
+
+        // Busca produtos pelo nome.
+        document.getElementById("buscaProdutos").addEventListener("input", function() {
+            const termo = this.value.toLowerCase().trim();
+
+            document.querySelectorAll(".produto").forEach(function(produto) {
+                const nome = produto.querySelector("h3").textContent.toLowerCase();
+                produto.style.display = nome.includes(termo) ? "" : "none";
+            });
+        });
+
+        // Confirma o cadastro da newsletter (demonstração local).
+        document.getElementById("formNewsletter").addEventListener("submit", function(evento) {
+            evento.preventDefault();
+            const email = document.getElementById("emailNewsletter").value.trim();
+            alert("Obrigado por se cadastrar, " + email + "!");
+            this.reset();
+        });
+    </script>
+
+</body>
+</html>
