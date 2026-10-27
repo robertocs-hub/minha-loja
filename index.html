@@ -30,11 +30,47 @@
 
     <main>
 
-        <!-- Banner principal -->
-        <section class="banner">
-            <h2>Ofertas especiais!</h2>
-            <p>Encontre os melhores produtos para você.</p>
-            <a href="#produtos">Ver produtos</a>
+        <!-- Banner principal / Ofertas especiais -->
+        <section class="banner" aria-label="Ofertas especiais">
+            <div class="carrossel" aria-label="Ofertas em destaque">
+                <div class="carrossel-track">
+                    <article class="slide active">
+                        <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=80" alt="Oferta para smartphones">
+                        <div class="slide-text">
+                            <span>Promoção especial</span>
+                            <h3>Smartphones com até 40% off</h3>
+                            <p>Descubra os melhores modelos com tecnologia de ponta.</p>
+                        </div>
+                    </article>
+
+                    <article class="slide">
+                        <img src="https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=1200&q=80" alt="Oferta para notebooks">
+                        <div class="slide-text">
+                            <span>Novidades</span>
+                            <h3>Notebooks para trabalho e estudo</h3>
+                            <p>Performance, design e praticidade para o dia a dia.</p>
+                        </div>
+                    </article>
+
+                    <article class="slide">
+                        <img src="https://images.unsplash.com/photo-1546435770-a3e426bf472b?auto=format&fit=crop&w=1200&q=80" alt="Oferta para áudio e acessórios">
+                        <div class="slide-text">
+                            <span>Acabou de chegar</span>
+                            <h3>Áudio e acessórios com descontos</h3>
+                            <p>Eleve sua experiência com produtos premium.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <button class="carrossel-btn prev" type="button" aria-label="Slide anterior">&#10094;</button>
+                <button class="carrossel-btn next" type="button" aria-label="Próximo slide">&#10095;</button>
+
+                <div class="carrossel-dots" aria-label="Navegação do carrossel">
+                    <button class="dot active" type="button" aria-label="Ir para o slide 1"></button>
+                    <button class="dot" type="button" aria-label="Ir para o slide 2"></button>
+                    <button class="dot" type="button" aria-label="Ir para o slide 3"></button>
+                </div>
+            </div>
         </section>
 
         <!-- Categorias -->
@@ -180,6 +216,42 @@
 
     <!-- JavaScript -->
     <script>
+        const slides = document.querySelectorAll(".slide");
+        const dots = document.querySelectorAll(".dot");
+        const prevButton = document.querySelector(".carrossel-btn.prev");
+        const nextButton = document.querySelector(".carrossel-btn.next");
+        let slideAtual = 0;
+
+        function mostrarSlide(index) {
+            slideAtual = (index + slides.length) % slides.length;
+
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("active", i === slideAtual);
+            });
+
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("active", i === slideAtual);
+            });
+        }
+
+        prevButton.addEventListener("click", function() {
+            mostrarSlide(slideAtual - 1);
+        });
+
+        nextButton.addEventListener("click", function() {
+            mostrarSlide(slideAtual + 1);
+        });
+
+        dots.forEach(function(dot, index) {
+            dot.addEventListener("click", function() {
+                mostrarSlide(index);
+            });
+        });
+
+        setInterval(function() {
+            mostrarSlide(slideAtual + 1);
+        }, 5000);
+
         const carrinho = [];
 
         const contadorCarrinho = document.getElementById("quantidadeCarrinho");
